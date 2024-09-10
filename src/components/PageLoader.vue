@@ -1,0 +1,56 @@
+<script setup>
+defineProps({
+	start: { type: Boolean }
+});
+</script>
+
+<template>
+    <div v-if="start">
+        <!-- Preloader -->
+        <div id="preloader"></div>
+    </div>
+</template>     
+
+<style scoped>
+  #preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background-color: var(--background-color);
+    transition: all 0.6s ease-out;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  #preloader:before,
+  #preloader:after {
+    content: "";
+    position: absolute;
+    border: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: animate-preloader 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  
+  #preloader:after {
+    animation-delay: -0.5s;
+  }
+  
+  @keyframes animate-preloader {
+    0% {
+      width: 10px;
+      height: 10px;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      opacity: 1;
+    }
+  
+    100% {
+      width: 72px;
+      height: 72px;
+      top: calc(50% - 36px);
+      left: calc(50% - 36px);
+      opacity: 0;
+    }
+  }
+</style>   
